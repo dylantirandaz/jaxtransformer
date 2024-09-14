@@ -40,3 +40,17 @@ class DenseBlock(hk.Module): #simple 2 layer MLP
         return hk.LayerNorm(axis=-1, create_scale=True,
                 create_offset=True, name=name)(x)
 
+
+class Transformer(hk.Module):
+
+    def __init__(self, num_heads: int, num_layers: int, 
+        dropout_rate: float, name: Optional[str] = None):
+        super().__init__(name=name)
+        self._num_layers = num_layers
+        self._num_heads = num_heads
+        self._dropout_rate = dropout_rate
+
+    ### def __call__(self, h: jnp.ndarray, 
+        # mask: Optional[jnp.ndarray],
+        # is_training: bool) -> jnp.ndarray:
+  
